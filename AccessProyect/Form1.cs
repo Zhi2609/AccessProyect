@@ -40,7 +40,26 @@ namespace AccessProyect
             cmd.ExecuteNonQuery();
             conn.Close();
             MessageBox.Show("Registro Exitosamente Guardado");
-            //Limpiar Texto();
+            LimpiarTexto();
+            LlenarGrid();
+        }
+        void LimpiarTexto()
+        {
+            textBox1.Text = "";
+            textBox2.Text = "";
+            textBox3.Text = "";
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            textBox1.Enabled = true;
+            conn.Open();
+            OleDbCommand cmd = new OleDbCommand("delete from tabla TPersona set Nombre='" + textBox2.Text + 
+                "', Edad="+ textBox3.Text + "where Id=" + textBox1.Text + " ", conn);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            MessageBox.Show("Registro Eliminado");
+            LimpiarTexto();
             LlenarGrid();
         }
     }
